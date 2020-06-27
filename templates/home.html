@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "bootstrap.html" %}
+{% block bootstrap %}
+<body>
+<style>
+@keyframes anim {
+  0%   {margin-top: 700px;
+        opacity: 0;
+  }
+  100%  {margin-top: 200px;
+  opacity: 1;
+  }
+}
+.text{
+  text-align: center;
+  animation-name: anim;
+  animation-duration: 3s;
+  margin-top: 200px;
+}
+
+</style>
+  <h1 class="text" class="p-3 mb-2 bg-light text-dark">
+     {{ page.name }}
+  </h1>
+{% endblock %}
+

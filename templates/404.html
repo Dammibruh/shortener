@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "bootstrap.html" %}
+{% block bootstrap %}
+<body>
+<style>
+.text{
+  text-align: center;
+  margin-top: 250px;
+}
+.error{
+	text-align: center;
+}
+</style>
+  <h1 class="text">
+     {{ name }}
+  </h1>
+  <p class="error">{{ error }}</p>
+{% endblock %}
+
