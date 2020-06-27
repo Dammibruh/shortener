@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% extends "bootstrap.html" %}
+{% block bootstrap %}
+<body>
+<style>
+@keyframes anim {
+  0%   {margin-top: 700px;
+        opacity: 0;
+  }
+  100%  {margin-top: 150px;
+  opacity: 1;
+  }
+}
+@keyframes btnss {
+  0%   {margin-top: 700px;
+        opacity: 0;
+  }
+  100%  {margin-top: 0px;
+  opacity: 1;
+  }
+}
+.inpt{
+  border-color: black;
+  border-width: 1px 1px;
+  border-radius: 4px;
+  margin-top: 0px;
+  animation-name: btnss;
+  animation-duration: 2s;
+  box-sizing: content-box;
+  padding: 7px 20px;
+  font-familly: sans-serif;
+}
+.inptno{
+  border-color: black;
+  border-width: 1px 1px;
+  border-radius: 4px;
+  margin-top: 30px;
+  padding: 7px 20px;
+  font-familly: sans-serif;
+}
+.main{
+  text-align: center;
+  margin-top: 150px;
+  animation-name: anim;
+  animation-duration: 2s;
+  font-familly: sans-serif;
+}
+.mainn{
+  text-align: center;
+  margin-top: 150px;
+  font-familly: sans-serif;
+}
+.btns{
+	text-align: center;
+}
+.btn{
+  font-familly: sans-serif;
+  background-color: #ffffff;
+  border-color: #000000;
+  color: black;
+  margin-top: 0px;
+  border-radius: 4px;
+	animation-name: btnss;
+	animation-duration: 2s;
+  border-width: 1px 1px;
+  padding: 7px 20px;
+}
+.btnn{
+  font-familly: sans-serif;
+  background-color: #ffffff;
+  border-color: #000000;
+  color: black;
+  border-radius: 4px;
+  border-width: 1px 1px;
+  padding: 7px 20px;
+}
+</style>
+<script>
+function CopyBtn() {
+  var copyText = document.getElementById("shor");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+</script>
+<div class="btns">
+<form action="" method="POST">
+{% if not urlsh %}
+<h1 class="main">{{ page.name }}</h1>
+<input type="text" class="inpt" name="url" placeholder="url to shorten"></input>
+<input class="btn btn-outline-dark" type=submit value="shorten"></input>
+{% elif "invalid" not in urlsh.lower() %}
+</form>
+<h1 class="mainn">{{ page.name }}</h1>
+<input type="text" class="inptno" value={{ urlsh }} id="shor"></input>
+<button class="btnn btn-outline-success" onclick="CopyBtn();location.href='/shortener'">copy</button>
+{% elif "invalid" in urlsh.lower() %}
+<h1 class="mainn">{{ page.name }}</h1>
+<input class="inptno" name="url" placeholder="Invalid url provided" type=link></input>
+<input class="btnn btn-outline-dark" type=submit value="shorten"></input>
+{% endif %}
+</div>
+{% endblock %}
