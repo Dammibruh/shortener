@@ -82,4 +82,3 @@ def contact():
 	content = ""
 	return "", 401
 conn.commit()
-app.run(debug=True)
