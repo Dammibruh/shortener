@@ -21,9 +21,6 @@ def main():
 	return render_template("home.html", page=page)
 
 #hmm optional shit just copy main page design
-@app.route("/about/")
-def about():
-	return "bruh after database"
 
 #shortener page design bruh just copy bootstrap
 @app.route("/shortener/", methods=["POST", "GET"])
@@ -43,6 +40,7 @@ def shortener():
 	return render_template("index.html", page=page)
 
 #shortener api bruh advanced shit use poggersql after
+'''
 @app.route("/shortener/post/", methods=[ "POST", "GET"])
 def api():
 	if request.method == "POST":
@@ -58,6 +56,7 @@ def api():
 			return "Invalid url provided", 406
 	else:
 		return jsonify({"url":None, "shortener":"api"})
+'''
 
 #bruh get the shortened url from db and redirect to original url
 @app.route("/shortener/<string:name>/")
