@@ -16,7 +16,6 @@ conn = psycopg2.connect(uri)
 cur = conn.cursor()
 cur.execute("CREATE TABLE IF NOT EXISTS shortlmao (url TEXT, shortened TEXT, requester TEXT, date TEXT)")
 
-#the main page must be a nice desgin
 @app.route("/home/")
 @app.route("/")
 def main():
