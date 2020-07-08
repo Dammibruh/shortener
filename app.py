@@ -50,11 +50,10 @@ def shortener():
 	if request.method == "POST":
 		url = request.form.get("url")
 		if re.match("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",url):
-			requester_ip = str(request.remote_addr)
 			name = "".join(random.choices(string.hexdigits, k=12))
 			date = str(datetime.utcnow())
 			shortened = f"{request.url_root}shortener/{name}/"
-			cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, requester_ip, date))
+			cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
 			conn.commit()
 			return render_template("index.html", page=page, urlsh=shortened)
 		else:
