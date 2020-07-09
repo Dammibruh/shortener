@@ -55,7 +55,7 @@ def shortener():
 			shortened = f"{request.url_root}shortener/{name}/"
 			cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
 			conn.commit()
-			return render_template("index.html", page=page, urlsh=shortened)
+			return render_template("index.html", page=page, urlsh=shortened), jsonify({"shortened": shortened})
 		else:
 			return render_template("index.html", page=page, urlsh="Invalid url provided"), 406
 	return render_template("index.html", page=page)
