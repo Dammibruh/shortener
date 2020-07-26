@@ -64,8 +64,8 @@ def shortener():
 def urlredi(name):
 	data = cur.execute("SELECT * FROM shortlmao WHERE shortened = %s",(name,))
 	check = cur.fetchall()
-	print(check[0][0])
-	return jsonify({"org_url":check[0][0]})
+	print(check[0])
+	return jsonify({"org_url":check[0]})
 @app.errorhandler(KeyError)
 def shortnotfound(e):
 		return jsonify({"error": 404}), 404
