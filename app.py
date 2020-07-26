@@ -51,19 +51,18 @@ def shortener():
 	if request.method == "POST":
 		url = request.form.get("url")
 		if re.match("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",url):
-			name = "".join(random.choices(string.hexdigits, k=12))
 			date = str(datetime.utcnow())
-			shortened = f"{request.url_root}shortener/{name}/"
+			shortened = reauest.form.get("shortenerd")
 			cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
 			conn.commit()
-			return jsonify({"url":url, "shortened":name})
+			return jsonify({"url":url, "shortened":shortened})
 		else:
 			return jsonify({"error":"Invalid url provided"}), 406
-	return jsonify({"url":None})
+	return jsonify({"url":None, "shortened": None})
 
 @app.route("/shortener/<string:name>/")
 def urlredi(name):
-	data = cur.execute("SELECT * FROM shortlmao WHERE shortened = %s",(f"{request.url_root}shortener/{name}/",))
+	data = cur.execute("SELECT * FROM shortlmao WHERE shortened = %s",(name,))
 	check = cur.fetchall()
 	print(check[0][0])
 	return jsonify({"org_url":check[0][0]})
