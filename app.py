@@ -52,7 +52,7 @@ def shortener():
 		url = request.form.get("url")
 		if re.match("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",url):
 			date = str(datetime.utcnow())
-			shortened = reauest.form.get("shortenerd")
+			shortened = request.form.get("shortenerd")
 			cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
 			conn.commit()
 			return jsonify({"url":url, "shortened":shortened})
