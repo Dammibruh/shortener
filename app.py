@@ -51,7 +51,7 @@ def shortener():
 	if request.method == "POST":
                 url = request.form.get("url")
                 date = str(datetime.utcnow())
-                shortened = request.form.get("shortenerd")
+                shortened = "".join(random.choices(string.hexdigits, k=6))
                 cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
                 conn.commit()
                 print("saved")
