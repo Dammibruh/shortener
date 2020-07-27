@@ -49,11 +49,11 @@ def main():
 @app.route("/shortener/", methods=["POST", "GET"])
 def shortener():
 	if request.method == "POST":
-		url = request.form.get("url")
-		date = str(datetime.utcnow())
-		shortened = request.form.get("shortenerd")
-		cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
-		conn.commit()
+                url = request.form.get("url")
+                date = str(datetime.utcnow())
+                shortened = request.form.get("shortenerd")
+                cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
+                conn.commit()
                 print("saved")
                 return jsonify({"url":url, "shortened":shortened})
 	return jsonify({"url":None, "shortened": None})
