@@ -64,7 +64,7 @@ def shortener():
                 cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
                 conn.commit()
                 print("saved")
-                return jsonify({"url":url, "shortened":shortened})
+                return shortened
 	return jsonify({"url":None, "shortened": None})
 
 @app.route("/shortener/<string:name>/")
