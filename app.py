@@ -50,14 +50,12 @@ def main():
 def shortener():
 	if request.method == "POST":
 		url = request.form.get("url")
-		if re.match("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",url):
-			date = str(datetime.utcnow())
-			shortened = request.form.get("shortenerd")
-			cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
-			conn.commit()
-			return jsonify({"url":url, "shortened":shortened})
-		else:
-			return jsonify({"error":"Invalid url provided"}), 406
+		date = str(datetime.utcnow())
+		shortened = request.form.get("shortenerd")
+		cur.execute("INSERT INTO shortlmao (url, shortened, requester, date) VALUES(%s, %s, %s, %s)",(url, shortened, "null", date))
+		conn.commit()
+                print("saved")
+                return jsonify({"url":url, "shortened":shortened})
 	return jsonify({"url":None, "shortened": None})
 
 @app.route("/shortener/<string:name>/")
